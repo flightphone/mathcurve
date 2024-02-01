@@ -155,6 +155,19 @@ vec3 shell (float u, float v)
     val.xz *= rot(-PI/2.5);
     return val;
 }
+//https://mathcurve.com/surfaces.gb/kuen/kuen.shtml
+float ukuen = 1.4305;
+vec3 kuen(float u, float v)
+{
+    //u -= PI;
+    u -= ukuen*TAU/2.;
+    float a = 5.,
+    d = 1. + u*u*sin(v)*sin(v),
+    x = a*(cos(u) + u*sin(u))*sin(v)/d,
+    y = a*(sin(u)- u*cos(u))*sin(v)/d,
+    z = a*(0.5*log(tan(v/2.)) + cos(v)/d);
+    return vec3(x, y, z);
+}
 
 
 //return surface by index
@@ -176,6 +189,8 @@ vec3 surf(float u, float v, int n)
         return Breather(u, v);
     if (n==7)        
         return shell(u, v);    
+    if (n==8)        
+        return kuen(u, v);        
 }
 
 //return normal from surface by index
@@ -348,6 +363,7 @@ void main() {
     sides = 1.;
     vec3 val = vec3(0.0);
     if (u_shape == 0.)
+        //val = surf_map(8, ukuen, 1.);  //Breather  22.01.2024
         val = surf_map(6, 7.45, 2.5);  //Breather  22.01.2024
     if (u_shape == 1.)
          val = surf_map(0, 2., 1.); //mebius
@@ -366,6 +382,8 @@ void main() {
         val = surf_map(7, 7.,1.);  //shell 24.01.2024
     if (u_shape == 8.)    
         val = curve_map(1, 5.);
+    if (u_shape == 9.)
+        val = surf_map(8, ukuen, 1.);  //kuen  01.02.2024    
     
     
     //returned
