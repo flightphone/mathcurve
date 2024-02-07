@@ -15,7 +15,7 @@ let renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-const collections = ["surfaces", "curves", "transform", "others"]
+const collections = ["surfaces", "curves", "transform", "others", "smooth"]
 const shapes = ["breather", "mebius", "dupin", "klein", "boys", "sine", "twist", "shell", "liss", "kuen"];
 const curves = ["mix", "solenoid", "liss", "sinewave", "trefoil", "tennis", "eight_knot", "rose"];
 const others = ["larme", "heir", "2", "3", "4", "5", "6"];
@@ -167,8 +167,8 @@ plane.add(planeBack);
 
 
 //list shaders for different shapes and curves
-const verts = ['shaders/mebius.vert', 'shaders/sinewave.vert', 'shaders/shell.vert', 'shaders/template.vert'];
-const allshapes = [shapes, curves, [], others];
+const verts = ['shaders/mebius.vert', 'shaders/sinewave.vert', 'shaders/shell.vert', 'shaders/template.vert', 'shaders/smooth.vert'];
+const allshapes = [shapes, curves, [], others, []] ;
 let vert = 'shaders/mebius.vert';
 
 loadVertexShader(vert);

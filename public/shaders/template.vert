@@ -388,19 +388,7 @@ void main() {
     if (u_shape == 6.)
         val = cube_map2(3, 4.);
 
-    //vec3 val = curve_map(2, 5.);
-    //vec3 val = cube_map(1, 1.);
-    //vec3 val = cube_map2(2, 5.);
-    //vec3 val = cube_map2(1, 1.);
-    //vec3 val = cube_map2(3, 4.);
-    //vec3 val = hexogram2();
-    //vec3 val = bio();
-    //vec3 val = larme_map();
-    //vec3 val = heir_map();
-
-    //vec3 val = cube_map2(3, 4.);
     
-    //returned
     norm = (modelViewMatrix * vec4(norm, 0)).xyz;
     vec4 worldPosition = modelViewMatrix * vec4(val, 1);
     rd = normalize(worldPosition.xyz - camera);
