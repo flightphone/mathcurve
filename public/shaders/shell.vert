@@ -11,11 +11,13 @@ varying vec2 uUv;
 
 vec3 shell (float u, float v)
 {
+    //u = -u;
     float a = 3., b = 2.5, m = -0.1, k = 2.5;
     float x = exp(m*u)*cos(u)*(a + b*cos(v));
     float y = exp(m*u)*sin(u)*(a + b*cos(v));
     float z = exp(m*u)*(k*a + b*sin(v)), h = k*a+b;
     z -= h/2.;
+    //z = -z;
     vec3 val = vec3(x, y, z);
     val.xz *= rot(PI/2.);
     return val;
